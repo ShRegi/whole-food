@@ -1,0 +1,3 @@
+rootProject.name = 'whole-food'
+
+include 'common'
