@@ -5,6 +5,10 @@ plugins {
     id 'java'
 }
 
+bootJar {
+    mainClassName = 'com.foods.wholefood.WholeFoodApplication'
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -34,6 +38,7 @@ subprojects {
     dependencies {
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+        compile 'org.springframework.kafka:spring-kafka'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 

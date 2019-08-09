@@ -1,5 +1,6 @@
 package com.foods.wholefood.utils;
 
+import lombok.experimental.UtilityClass;
 import org.springframework.boot.SpringApplication;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import static com.foods.wholefood.WholeFoodsConstants.Environment.SPRING_PROFILE_DEVELOPMENT;
 import static com.foods.wholefood.WholeFoodsConstants.SpringProperties.SPRING_PROFILE_DEFAULT;
 
+@UtilityClass
 public class PropertiesUtils {
 
     public static void addDefaultProfile(SpringApplication app) {
