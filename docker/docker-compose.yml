@@ -14,12 +14,11 @@ services:
       - ./environment/pgdump:/app/
     #- pgdata:/var/lib/postgresql/data
     command: "-F -e -c full_page_writes=0 -c shared_preload_libraries='pg_stat_statements' -c pg_stat_statements.max=1000 -c pg_stat_statements.track=all"
-
   zookeeper:
     container_name: wf-zookeeper
     image: wurstmeister/zookeeper:3.4.6
-      ports:
-        - 2181:2181
+    ports:
+      - 2181:2181
   kafka:
     container_name: kafka
     image: wurstmeister/kafka:1.0.0
@@ -30,3 +29,5 @@ services:
       KAFKA_CREATE_TOPICS: "topic-wf:1:1"
     ports:
       - 9092:9092
+    depends_on:
+      - zookeeper
