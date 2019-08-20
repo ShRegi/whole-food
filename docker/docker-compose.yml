@@ -1,0 +1,33 @@
+version: '3.4'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.6-alpine
+    network_mode: bridge
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./environment/pgdump:/app/
+    #- pgdata:/var/lib/postgresql/data
+    command: "-F -e -c full_page_writes=0 -c shared_preload_libraries='pg_stat_statements' -c pg_stat_statements.max=1000 -c pg_stat_statements.track=all"
+  zookeeper:
+    container_name: wf-zookeeper
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - 2181:2181
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka:1.0.0
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "topic-wf:1:1"
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
