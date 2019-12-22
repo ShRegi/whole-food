@@ -1,6 +1,7 @@
 package com.foods.wholefood.controller;
 
-import com.foods.wholefood.services.KafkaService;
+import com.foods.wholefood.api.KafkaService;
+import com.foods.wholefood.services.KafkaMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,16 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class KafkaTestController {
 
-    private final KafkaService kafkaService;
+    private final KafkaService kafkaMessageService;
 
     @Autowired
-    public KafkaTestController(KafkaService kafkaService) {
-        this.kafkaService = kafkaService;
+    public KafkaTestController(KafkaMessageService kafkaMessageService) {
+        this.kafkaMessageService = kafkaMessageService;
     }
 
     @GetMapping(value = "testKafka")
     public String sendMessageToKafka() {
-        kafkaService.sendMessage("wf-topic", "dce");
+        kafkaMessageService.sendMessage("wf-topic", "dce");
         return "message was sent";
     }
 

@@ -1,7 +1,7 @@
 package com.foods.wholefood.controller;
 
 import com.foods.wholefood.configuration.ServicesMockConfiguration;
-import com.foods.wholefood.services.KafkaService;
+import com.foods.wholefood.services.KafkaMessageService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,13 +25,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class KafkaTestControllerTest {
 
     @Autowired
-    public KafkaService kafkaService;
+    public KafkaMessageService kafkaMessageService;
     @Autowired
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
-        doNothing().when(kafkaService).sendMessage(anyString(), anyString());
+        doNothing().when(kafkaMessageService).sendMessage(anyString(), anyString());
     }
 
     @Test
@@ -39,6 +39,6 @@ public class KafkaTestControllerTest {
         mockMvc.perform(get("/testKafka"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("message was sent"));
-        verify(kafkaService).sendMessage(eq("wf-topic"), eq("dce"));
+        verify(kafkaMessageService).sendMessage(eq("wf-topic"), eq("dce"));
     }
 }

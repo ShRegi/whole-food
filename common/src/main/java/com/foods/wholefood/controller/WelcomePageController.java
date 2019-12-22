@@ -1,6 +1,6 @@
 package com.foods.wholefood.controller;
 
-import com.foods.wholefood.AppInfo;
+import com.foods.wholefood.dto.AppInfoDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomePageController {
 
     @GetMapping("/")
-    public AppInfo welcome() {
-        return AppInfo.builder().parameter("app-name", "APPPP")
+    public AppInfoDto welcome() {
+        return AppInfoDto.builder().parameter("app-name", "APPPP")
                 .build();
     }
 
     @GetMapping("err")
-    public AppInfo getError() {
-        return AppInfo.builder().parameter("ERROR", "Try to do it later").build();
+    public AppInfoDto getError() {
+        return AppInfoDto.builder().parameter("ERROR", "Try to do it later").build();
     }
 }

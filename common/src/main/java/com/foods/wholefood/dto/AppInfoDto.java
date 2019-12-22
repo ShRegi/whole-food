@@ -1,4 +1,4 @@
-package com.foods.wholefood;
+package com.foods.wholefood.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
-@JsonDeserialize(builder = AppInfo.AppInfoBuilder.class)
+@JsonDeserialize(builder = AppInfoDto.AppInfoBuilder.class)
 @Builder(builderClassName = "AppInfoBuilder", toBuilder = true)
-public class AppInfo {
+public class AppInfoDto {
 
     private LocalDateTime startTime;
     @Singular
