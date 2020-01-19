@@ -17,6 +17,7 @@ public class KafkaMessageService implements KafkaService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    @Override
     public void sendMessage(String topic, String message) {
         kafkaTemplate.send(topic, message);
     }
