@@ -1,6 +1,7 @@
 package com.foods.wholefood.controller;
 
 import com.foods.wholefood.configuration.ServicesMockConfiguration;
+import com.foods.wholefood.constant.TestConstants;
 import com.foods.wholefood.services.KafkaMessageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class KafkaTestControllerTest {
 
     @Test
     void testSendMessageToKafka() throws Exception {
-        mockMvc.perform(get("/testKafka"))
+        mockMvc.perform(get(TestConstants.URL_TEST_KAFKA))
                 .andExpect(status().isOk())
-                .andExpect(content().string("message was sent"));
-        verify(kafkaMessageService).sendMessage(eq("wf-topic"), eq("dce"));
+                .andExpect(content().string(TestConstants.MESSAGE_WAS_SENT));
+        verify(kafkaMessageService).sendMessage(eq(TestConstants.SEND_MESSAGE_WF_TOPIC),
+                eq(TestConstants.SEND_MESSAGE_DCE));
     }
 }
