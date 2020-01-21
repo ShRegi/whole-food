@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ReservationRepository {
+public class CurrencyHistoryRepository {
 
     private final InfluxDB influxDB;
 
     @Autowired
-    public ReservationRepository(InfluxDB influxDB) {
+    public CurrencyHistoryRepository(InfluxDB influxDB) {
         this.influxDB = influxDB;
     }
 

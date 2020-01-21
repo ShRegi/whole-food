@@ -18,3 +18,4 @@ HELP.md
 *.iml
 *.ipr
 */out/
+*/target

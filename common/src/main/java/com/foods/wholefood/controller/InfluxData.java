@@ -1,6 +1,6 @@
 package com.foods.wholefood.controller;
 
-import com.foods.wholefood.repository.ReservationRepository;
+import com.foods.wholefood.repository.CurrencyHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InfluxData {
 
-    private final ReservationRepository reservationRepository;
+    private final CurrencyHistoryRepository currencyHistoryRepository;
 
     @Autowired
-    public InfluxData(ReservationRepository reservationRepository) {
-        this.reservationRepository = reservationRepository;
+    public InfluxData(CurrencyHistoryRepository currencyHistoryRepository) {
+        this.currencyHistoryRepository = currencyHistoryRepository;
     }
 
     @GetMapping("/influxVersion")
     public String getInfluxUser() {
-        return reservationRepository.getVersion();
+        return currencyHistoryRepository.getVersion();
     }
 }
