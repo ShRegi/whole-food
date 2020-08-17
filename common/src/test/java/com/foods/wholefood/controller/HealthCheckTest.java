@@ -1,6 +1,7 @@
 package com.foods.wholefood.controller;
 
 import com.foods.wholefood.configuration.ServicesMockConfiguration;
+import com.foods.wholefood.constant.TestConstants;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,8 +21,8 @@ class HealthCheckTest {
 
     @Test
     void testHealthCheck() throws Exception {
-        mockMvc.perform(get("/health"))
+        mockMvc.perform(get(TestConstants.PERFORM_HEALTH))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").value("I'm alive!"));
+                .andExpect(jsonPath("$").value(TestConstants.I_M_ALIVE));
     }
 }
